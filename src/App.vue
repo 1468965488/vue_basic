@@ -1,42 +1,59 @@
 <template>
-<div>
-  <p>click {{count}} times, count is {{type}}</p>
-  <button @click="increament">+</button>
-  <button @click="decreament">-</button>
-  <button @click="increaOdd">incaeament if odd</button>
-  <button @click="increaAsync">increament async</button>
-</div>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header/>
+      <List/>
+      <Footer/> 
+    </div>
+  </div>
 </template>
 
 <script>
-  import {mapState, mapActions, mapGetters} from 'vuex'
+  import Header from './components/Header.vue'
+  import List from './components/List.vue'
+  import Footer from './components/Footer.vue'
+  import storageUtils from './util/storageUtils'
 
   export default {
-    computed:{
-      ...mapState(['count']),
-      ...mapGetters('type')
-    },
-    // methods:{
-    //   increament(){
-    //     //通知vuex去增加
-    //     this.$store.dispatch('increament')   //触发store中的action调用
-    //   },
-    //   increaOdd(){
-    //     this.$store.dispatch('increaOdd')
-    //   },
-    //   decreament(){
-    //     this.$store.dispatch('decreament')
-    //   },
-    //   increaAsync(){
-    //     this.$store.dispatch('increaAsync')
+    // watch: {
+    //   todos: {
+    //     deep: true, 
+    //     handler: storageUtils.saveTodos
     //   }
-    // }
-    methods:{
-      ...mapActions(['increament', 'increaOdd', 'decreament', 'increaAsync'])
+    // },
+    // mounted(){
+    //   this.$refs.handle.$on('addTodo', this.addTodo)
+    //   Pub
+    // },
+
+    components: {
+      Header,
+      List,
+      Footer
     }
   }
 </script>
 
 <style>
-
+  .todo-container {
+    width: 600px;
+    margin: 0 auto;
+  }
+  .todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 </style>
+<!--
+
+ data(){
+      return {
+        todos:[
+          {title:'吃饭', complete:false},
+          {title:'睡觉', complete:false},
+          {title:'打豆豆', complete:true},
+        ]
+      }
+    },
+-->
