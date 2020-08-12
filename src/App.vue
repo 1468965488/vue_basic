@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p>click {{$store.state.count}} times, count is {{type}}</p>
+  <p>click {{count}} times, count is {{type}}</p>
   <button @click="increament">+</button>
   <button @click="decreament">-</button>
   <button @click="increaOdd">incaeament if odd</button>
@@ -9,26 +9,30 @@
 </template>
 
 <script>
+  import {mapState, mapActions, mapGetters} from 'vuex'
+
   export default {
     computed:{
-      type(){
-        return this.$store.getters.type
-      }
+      ...mapState(['count']),
+      ...mapGetters('type')
     },
+    // methods:{
+    //   increament(){
+    //     //通知vuex去增加
+    //     this.$store.dispatch('increament')   //触发store中的action调用
+    //   },
+    //   increaOdd(){
+    //     this.$store.dispatch('increaOdd')
+    //   },
+    //   decreament(){
+    //     this.$store.dispatch('decreament')
+    //   },
+    //   increaAsync(){
+    //     this.$store.dispatch('increaAsync')
+    //   }
+    // }
     methods:{
-      increament(){
-        //通知vuex去增加
-        this.$store.dispatch('increament')   //触发store中的action调用
-      },
-      increaOdd(){
-        this.$store.dispatch('increaOdd')
-      },
-      decreament(){
-        this.$store.dispatch('decreament')
-      },
-      increaAsync(){
-        this.$store.dispatch('increaAsync')
-      }
+      ...mapActions(['increament', 'increaOdd', 'decreament', 'increaAsync'])
     }
   }
 </script>
