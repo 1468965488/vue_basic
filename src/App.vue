@@ -15,17 +15,9 @@
   import storageUtils from './util/storageUtils'
 
   export default {
-    // watch: {
-    //   todos: {
-    //     deep: true, 
-    //     handler: storageUtils.saveTodos
-    //   }
-    // },
-    // mounted(){
-    //   this.$refs.handle.$on('addTodo', this.addTodo)
-    //   Pub
-    // },
-
+    mounted(){
+      this.$store.dispatch('reqTodos')
+    },
     components: {
       Header,
       List,

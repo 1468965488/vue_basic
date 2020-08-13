@@ -7,12 +7,20 @@
 <script>
   import {mapState} from 'vuex'
   import Item from "./Item";
+  import storageutil from '../util/storageUtils'
   export default {
     components:{
       Item
     },
     computed:{
       ...mapState(['todos'])
+    },
+
+    watch:{
+      todos:{
+        deep:true,
+        handler:storageutil.saveTodos
+      }
     }
   }
 </script>

@@ -1,5 +1,5 @@
 //包含多个优action触发去直接更新状态的方法对象
-import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETE} from './mutation-types'
+import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETE, RECEIVE_TODOS} from './mutation-types'
 export default {
     [ADD_TODO](state, {todo}){
         state.todos.unshift(todo)
@@ -19,5 +19,9 @@ export default {
         state.todos = state.todos.filter(item =>{
             return !item.complete
         })
+    },
+
+    [RECEIVE_TODOS] (state, todos){
+        state.todos = todos
     }
 }
